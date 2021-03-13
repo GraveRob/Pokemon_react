@@ -1,11 +1,11 @@
 import styles from "./styles.module.css";
-import img from "../../bg3.jpg";
 
-const Layout = ({title, descr, urlBg, colorBg}) =>{
-    const styleReact = urlBg ? {backgroundImage: `url(${img})`} : {backgroundColor: `${colorBg}`};
-
+const Layout = ({id, title, urlBg, colorBg, children}) =>{
+    const styleReact = {};
+    if(urlBg) {styleReact.backgroundImage = `url(${urlBg})`}
+    else if(colorBg) {styleReact.backgroundColor = colorBg}
     return(
-        <section className={styles.root} style = {styleReact}>
+        <section className={styles.root} style = {styleReact} id = {id}>
             <div className={styles.wrapper}>
                 <article>
                     <div className={styles.title}>
@@ -13,7 +13,7 @@ const Layout = ({title, descr, urlBg, colorBg}) =>{
                         <span className={styles.separator}></span>
                     </div>
                     <div className={styles.desc + " " + styles.full}>
-                        { descr && (<p>{descr}</p>)}
+                       {children}
                     </div>
                 </article>
             </div>
